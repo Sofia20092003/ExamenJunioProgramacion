@@ -18,6 +18,11 @@ public class Tecnico extends Profesional {
     }
 
     @Override
+    public double calcularBonus() {
+        return 200;
+    }
+
+    @Override
     public String toString() {
         return "Tecnico{" +
                 "nombre='" + this.getNombre() + '\'' +
