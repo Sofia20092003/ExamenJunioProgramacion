@@ -5,6 +5,7 @@ import edu.sr.clases.Jugador;
 import edu.sr.clases.Tecnico;
 import edu.sr.enumerados.PosicionJugador;
 import edu.sr.excepciones.PresupuestoExcedidoException;
+import edu.sr.excepciones.ProfesionalNoEncontradoException;
 
 import java.util.Scanner;
 
@@ -45,7 +46,7 @@ public class Principal {
 
                         gestorClub.contratar(new Jugador(nombre, salario, pos));
                     } catch (PresupuestoExcedidoException e) {
-                        System.out.println(e.getMessage());
+                        System.err.println(e.getMessage());
                     }
                     break;
                 case 2:
@@ -57,10 +58,35 @@ public class Principal {
                         double salarioBaseTecnico = sc.nextDouble();
                         sc.nextLine();
 
-                        System.out.println("Introduzca el puesto que tiene (Ej:");
+                        System.out.println("Introduzca el puesto que tiene (Ej:Entrenador, Fisioterapeuta....): ");
+                        String puestoTecnico = sc.nextLine();
 
-                        gestorClub.contratar(new Tecnico());
+                        gestorClub.contratar(new Tecnico(nombreTecnico, salarioBaseTecnico, puestoTecnico));
+                    } catch (PresupuestoExcedidoException e) {
+                        System.err.println(e.getMessage());
                     }
+                    break;
+                case 3:
+                    try{
+                        System.out.println("Introduzca el nombre del Profesional que quiere despedir: ");
+                        String nombreProfesional = sc.nextLine();
+
+                        gestorClub.despedir(nombreProfesional);
+
+                        System.out.println("El empleado "+nombreProfesional+" ha sido despedido.");
+                    } catch (ProfesionalNoEncontradoException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+                case 4:
+                    gestorClub.mostrarNominas();
+                    break;
+                case 5:
+                    System.out.println("Cerrando Programa......");
+                    sc.close();
+                    break;
+                default:
+                    System.out.println("Opcion incorrecta...");
             }
         }
     }

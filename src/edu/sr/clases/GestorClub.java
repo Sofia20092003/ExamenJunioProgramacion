@@ -23,19 +23,19 @@ public class GestorClub {
         double total = 0;
 
         for (Profesional p : profesionales) {
-            total += p.getSalarioBase();
+            total += p.salarioTotal();
         }
 
-        total += profesional.getSalarioBase();
+        total += profesional.salarioTotal();
 
         if (total > PRESUPUESTO_MAXIMO) {
-            throw new PresupuestoExcedidoException("Se supera el presupuesto máximo del club.");
+            throw new PresupuestoExcedidoException("Error: Se supera el presupuesto máximo del club, por lo tanto no puede ser contratado.");
         }
 
         profesionales.add(profesional);
     }
 
-    public void despedir(String nombre) {
+    public void despedir(String nombre) throws ProfesionalNoEncontradoException{
 
         for (Profesional p : profesionales) {
             if (p.getNombre().equalsIgnoreCase(nombre)) {
@@ -44,7 +44,7 @@ public class GestorClub {
             }
         }
 
-        throw new ProfesionalNoEncontradoException("No existe ningún profesional con ese nombre.");
+        throw new ProfesionalNoEncontradoException("Error: No existe ningún profesional con ese nombre.");
     }
 
     public void mostrarNominas() {

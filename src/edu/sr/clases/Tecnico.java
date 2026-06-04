@@ -19,7 +19,7 @@ public class Tecnico extends Profesional {
 
     @Override
     public double calcularBonus() {
-        return 200;
+        return this.getSalarioBase() + 200.00;
     }
 
     @Override
