@@ -75,7 +75,7 @@ public class Principal {
 
                         System.out.println("El empleado "+nombreProfesional+" ha sido despedido.");
                     } catch (ProfesionalNoEncontradoException e) {
-                        System.out.println(e.getMessage());
+                        System.err.println(e.getMessage());
                     }
                     break;
                 case 4:
@@ -84,7 +84,7 @@ public class Principal {
                 case 5:
                     System.out.println("Cerrando Programa......");
                     sc.close();
-                    break;
+                    return;
                 default:
                     System.out.println("Opcion incorrecta...");
             }
